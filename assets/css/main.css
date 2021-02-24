@@ -3553,6 +3553,19 @@ button.btn-outline-border-primary {
     background-image: url(../img/bg-hoantra.jfif);
 }
 
+.product-selling-heading {
+    padding: 20px 25px 10px 25px;
+}
+
+.product-selling-heading-lable {
+    color: rgb(134 24 27);
+    text-transform: uppercase;
+}
+
+.product-selling-heading-text {
+    color: rgb(134 24 27);
+}
+
 .product-selling-list {
    display: flex;
    padding-left: 5px;
@@ -3568,4 +3581,12 @@ button.btn-outline-border-primary {
     margin-right: 1px;
 
     box-shadow: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
 }

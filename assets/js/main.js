@@ -598,7 +598,10 @@ document.addEventListener('DOMContentLoaded', function(){
     const slideItem = document.querySelector('.slider-item');
     const slideItems = document.querySelectorAll('.slider-item');
     const slideItemAll = slideItems.length;
-    const slideItemWidth = slideItem.offsetWidth;
+    let slideItemWidth = 0;
+    if(slideItem){
+      slideItemWidth = slideItem.offsetWidth;
+    }
     const slideItemWidthMax = (slideItemAll-1)*(slideItemWidth + 10);
     const duration = 6000;
     let index = 0;
@@ -622,12 +625,16 @@ document.addEventListener('DOMContentLoaded', function(){
     pagination(slideItemAll);
 
     const paginationAll = document.querySelectorAll(".pagination");
-          paginationAll[index].classList.add('active');
+          if(paginationAll[index]){
+            paginationAll[index].classList.add('active');
+          }
     const clearPagination = () => {
       for (const key in paginationAll) {
         if (Object.hasOwnProperty.call(paginationAll, key)) {
-          const element = paginationAll[key];
-          element.classList.remove('active');
+          if(paginationAll){
+            const element = paginationAll[key];
+            element.classList.remove('active');
+          }
         }
       }
     }
@@ -635,28 +642,45 @@ document.addEventListener('DOMContentLoaded', function(){
     let nextSlide =  () => {
       ++index;
       if(index*slideItemWidth <  slideItemWidthMax){
-        slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+        if(slideList){
+          slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+        }
         clearPagination();
-        paginationAll[index].classList.add('active');
+        if(paginationAll[index]){
+          paginationAll[index].classList.add('active');
+        }
       }else {
         index = 0;
-        slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+        if(slideList){
+          slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+        }
         clearPagination();
-        paginationAll[index].classList.add('active');
+        if(paginationAll[index]){
+          paginationAll[index].classList.add('active');
+        }
       }
     }
 
     let prevSlide = () => {
       if(index > 0){
         --index;
-        slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+        if(slideList){
+          slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+        }
         clearPagination();
-        paginationAll[index].classList.add('active');
+        if(paginationAll[index]){
+          paginationAll[index].classList.add('active');
+        }
       }
     }
 
-    btnPrev.onclick = () => slide("prev");
-    btnNext.onclick = () => slide("next");
+    if(btnPrev ){
+      btnPrev.onclick = () => slide("prev");
+    }
+    
+    if(btnNext){
+      btnNext.onclick = () => slide("next");
+    }
     
 
     //Handle Click pagination slider
