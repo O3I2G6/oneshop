@@ -722,4 +722,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
     let timer = setInterval(autoSlide, duration);
 
+
+    //bg product selling
+
+    const bgProductSellingTop = document.querySelector('#bg-product-selling-top');
+    if(window.matchMedia("(max-width: 700px)").matches){
+      if(bgProductSellingTop){
+        bgProductSellingTop.src = "./assets/img/bg-selling-top-mobile.jfif";
+        bgProductSellingTop.style.height = "46.9167px";
+      }
+    }
 },true);
