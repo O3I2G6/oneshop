@@ -1,5 +1,6 @@
 :root {
     --primary-color: rgb(238, 77, 45);
+    --primary-mall-color: #D0011B;
     --white-color: #fff;
     --black-color: #000;
     --text-color-dark:rgb(53, 52, 52); 
@@ -268,4 +269,40 @@ a {
 
 .flex-column {
     flex-direction: column;
+}
+
+/* Block */
+
+.block {
+    border-radius: 4px;
+}
+
+.block-heading {
+    display: flex;
+    padding: 20px 20px;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    justify-content: space-between;
+}
+
+.block-heading-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.block-see-more {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    color: var(--primary-mall-color);
+}
+
+.block-see-more-icon {
+    width: 9px;
+    margin-left: 4px;
+}
+
+.block-body {
+    padding: 20px;
 }

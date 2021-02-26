@@ -3737,3 +3737,88 @@ button.btn-outline-border-primary {
     background-image: url(../img/flash-sale-progress-fire.png);
 }
 
+
+.heading-title {
+    font-size: 17px;
+    padding-right: 15px;
+    text-transform: uppercase;
+    color: var(--primary-mall-color);
+}
+
+.heading-option {
+    border-left: 1px solid var(--text-color);
+}
+
+.heading-option-list {
+    display: flex;
+    align-items: center;
+}
+
+.heading-option-item {
+    display: flex;
+    padding: 0 15px;
+    font-size: 16px;
+    align-items: center;
+    color: var(--text-color-dark);
+}
+
+.heading-option-item-icon {
+    --size: 17px;
+    width: var(--size);
+    height: var(--size);
+    margin-right: 6px;
+    background-size: 280%;
+    background-repeat: no-repeat;
+    background-image: url(../img/heading-option.png);
+}
+
+.free-return {
+    background-position: 10% 10%;
+}
+
+.genuine {
+    background-position: 80% 10%;
+}
+
+.free-shipping {
+    background-position: 10% 100%;
+}
+
+/* Slide Shop Mall Start */
+
+.shop-mall-slide-container {
+    width: 100%;
+    height: 452px;
+}
+
+.shop-mall-slide-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.shop-mall-slide-list {
+    height: 100%;
+    display: flex;
+
+}
+
+.shop-mall-slide-item {
+    flex: 0 0 100%;
+}
+
+.shop-mall-slide-link {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.shop-mall-slide-img {
+    width: 100%;
+    height: 100%;
+    background-size: conta;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Slide Shop Mall End */
