@@ -726,10 +726,23 @@ document.addEventListener('DOMContentLoaded', function(){
     //bg product selling
 
     const bgProductSellingTop = document.querySelector('#bg-product-selling-top');
-    if(window.matchMedia("(max-width: 700px)").matches){
+    if(window.matchMedia("(max-width: 539px)").matches){
       if(bgProductSellingTop){
-        bgProductSellingTop.src = "./assets/img/bg-selling-top-mobile.jfif";
+        bgProductSellingTop.src = "../assets/img/bg-selling-top-mobile.jfif";
         bgProductSellingTop.style.height = "46.9167px";
       }
+    }
+
+    //Flash sale carousel
+    var flashSaleCarousel = document.querySelector('#flash-sale-carousel');
+    if(flashSaleCarousel){
+      var flashSaleItem = document.querySelectorAll('a[data-target="flashSaleItem"]');
+      var flashSaleItemWidth = flashSaleItem[0].offsetWidth;
+      var flashSaleItemArr = Array.from(flashSaleItem).length;
+      var flashSaleItemWidthAll = -flashSaleItemWidth*(flashSaleItemArr-6);
+      var flashSaleBtnPrev = document.querySelector('#btn-flash-sale-prev');
+      var flashSaleBtnNext = document.querySelector('#btn-flash-sale-next');
+  
+      handleClickCarousel(flashSaleCarousel, flashSaleItemArr, flashSaleBtnPrev, flashSaleBtnNext, flashSaleItemWidth, flashSaleItemWidthAll, 5, 'showFlex');
     }
 },true);

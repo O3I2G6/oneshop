@@ -3546,7 +3546,6 @@ button.btn-outline-border-primary {
 
 .product-selling-container {
     width: 100%;
-    overflow: hidden;
     border-radius: 4px;
     background-color: #ffffff;
 }
@@ -3609,7 +3608,6 @@ button.btn-outline-border-primary {
 
 .flash-sale {
     margin-top: 30px;
-    overflow: hidden;
     border-radius: 4px;
 }
 
@@ -3655,6 +3653,10 @@ button.btn-outline-border-primary {
 }
 
 .flash-sale-body {
+    position: relative;
+}
+
+.flash-sale-wrapper {
     overflow: hidden;
 }
 
@@ -3734,3 +3736,4 @@ button.btn-outline-border-primary {
     background-repeat: no-repeat;
     background-image: url(../img/flash-sale-progress-fire.png);
 }
+
