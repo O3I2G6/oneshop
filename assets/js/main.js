@@ -591,12 +591,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     //auto Slider
-    const sliderList = document.querySelector('.slider-list');
     const btnPrev = document.querySelector('#btnSlideLeft');
     const btnNext = document.querySelector('#btnSlideRight');
     const slideList = document.querySelector('.slider-list');
     const slideItem = document.querySelector('.slider-item');
     const slideItems = document.querySelectorAll('.slider-item');
+    const slidePagination = document.querySelector(".slider-pagination");
     const slideItemAll = slideItems.length;
     let slideItemWidth = 0;
     if(slideItem){
@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //Create pagination slide
 
-    let pagination = (elements) => {
+    let pagination = (elements, paginationList, className) => {
       for (let i = 0; i < elements; i ++){
         const div = document.createElement("div");
               div.style.height = "10px";
@@ -617,61 +617,75 @@ document.addEventListener('DOMContentLoaded', function(){
               div.style.borderRadius = "50%";
               div.style.border = "1px solid hsl(0deg 0% 54% / 40%)";
               div.style.backgroundColor = "hsl(0deg 0% 100% / 40%)";;
-              div.className = "pagination";
-              document.querySelector(".slider-pagination").appendChild(div);
+              div.className = className;
+              paginationList.appendChild(div);
       }
     }
 
-    pagination(slideItemAll);
+    pagination(slideItemAll, slidePagination, "pagination");
 
-    const paginationAll = document.querySelectorAll(".pagination");
-          if(paginationAll[index]){
-            paginationAll[index].classList.add('active');
-          }
-    const clearPagination = () => {
-      for (const key in paginationAll) {
-        if (Object.hasOwnProperty.call(paginationAll, key)) {
-          if(paginationAll){
-            const element = paginationAll[key];
+    //Handle active pagination
+
+      let handleActivePagination = (paginations) => {
+        if(paginations[index]){
+          paginations[index].classList.add('active');
+        }
+    }
+
+    const clearPagination = (paginations) => {
+      for (const key in paginations) {
+        if (Object.hasOwnProperty.call(paginations, key)) {
+          if(paginations){
+            const element = paginations[key];
             element.classList.remove('active');
           }
         }
       }
     }
 
-    let nextSlide =  () => {
-      ++index;
-      if(index*slideItemWidth <  slideItemWidthMax){
+    const paginationAll = document.querySelectorAll(".pagination");
+    
+    handleActivePagination(paginationAll);
+
+
+    let nextSlide =  (state, slideItemWidth, slideItemWidthMax, slideList, paginationAll) => {
+
+      if(state*slideItemWidth <  slideItemWidthMax){
         if(slideList){
-          slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+          slideList.style.transform = "translateX("+state*(-slideItemWidth)+"px)";
         }
-        clearPagination();
-        if(paginationAll[index]){
-          paginationAll[index].classList.add('active');
+        clearPagination(paginationAll);
+        if(paginationAll[state]){
+          paginationAll[state].classList.add('active');
         }
       }else {
-        index = 0;
+        state = 0;
         if(slideList){
-          slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+          slideList.style.transform = "translateX("+state*(-slideItemWidth)+"px)";
         }
-        clearPagination();
-        if(paginationAll[index]){
-          paginationAll[index].classList.add('active');
+        clearPagination(paginationAll);
+        if(paginationAll[state]){
+          paginationAll[state].classList.add('active');
         }
       }
+
+      return state;
     }
 
-    let prevSlide = () => {
-      if(index > 0){
-        --index;
+    let prevSlide = (state, slideItemWidth, slideList, paginationAll) => {
+
+      if(state > 0){
+        --state;
         if(slideList){
-          slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+          slideList.style.transform = "translateX("+state*(-slideItemWidth)+"px)";
         }
-        clearPagination();
-        if(paginationAll[index]){
-          paginationAll[index].classList.add('active');
+        clearPagination(paginationAll);
+        if(paginationAll[state]){
+          paginationAll[state].classList.add('active');
         }
       }
+
+      return state;
     }
 
     if(btnPrev ){
@@ -685,27 +699,26 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //Handle Click pagination slider
 
-    let handleClickPagination = () => {
+    let handleClickPagination = (state, slideItemWidth, slideList, paginationAll, timer) => {
       for (const key in paginationAll) {
         if (Object.hasOwnProperty.call(paginationAll, key)) {
           paginationAll[key].onclick = () => {
-            clearPagination();
-            index = key;
+            clearPagination(paginationAll);
+            state = key;
             paginationAll[key].classList.add('active');
-            slideList.style.transform = "translateX("+index*(-slideItemWidth)+"px)";
+            slideList.style.transform = "translateX("+state*(-slideItemWidth)+"px)";
             clearInterval(timer);
             timer = setInterval(autoSlide, duration);
           }
         }
       }
+      return state;
     }
 
-    handleClickPagination();
 
-
-    let slide =  direction => {
-      if(direction === 'next') nextSlide();
-      if(direction === 'prev') prevSlide();
+    let slide =  (direction) => {
+      if(direction === 'next') { index = nextSlide(++index, slideItemWidth, slideItemWidthMax, slideList, paginationAll)};
+      if(direction === 'prev') { index = prevSlide(index, slideItemWidth, slideList, paginationAll)};
 
       //stopped auto slide when user click prev/next button
 
@@ -721,6 +734,8 @@ document.addEventListener('DOMContentLoaded', function(){
     let autoSlide = () => slide("next");
 
     let timer = setInterval(autoSlide, duration);
+
+    index = handleClickPagination(index, slideItemWidth, slideList, paginationAll, timer);
 
 
     //bg product selling
@@ -745,4 +760,33 @@ document.addEventListener('DOMContentLoaded', function(){
   
       handleClickCarousel(flashSaleCarousel, flashSaleItemArr, flashSaleBtnPrev, flashSaleBtnNext, flashSaleItemWidth, flashSaleItemWidthAll, 5, 'showFlex');
     }
+
+    //Shop mall carousel
+
+    let shopMallList = document.querySelector('#shop-mall-list');
+    if(shopMallList) {
+      let shopMallItemList = document.querySelectorAll('div[data-slide = "shopmallitem"]');
+      let shopMallItemWidth = shopMallItemList[0].offsetWidth;
+      let shopMallItemLength = Array.from(shopMallItemList).length;
+      let shopMallItemWidthAll = -shopMallItemWidth*(flashSaleItemArr-4);
+      let shopMallBtnPrev = document.querySelector('#btn-shop-mall-prev');
+      let shopMallBtnNext = document.querySelector('#btn-shop-mall-next');
+
+      handleClickCarousel(shopMallList, shopMallItemLength, shopMallBtnPrev, shopMallBtnNext, shopMallItemWidth, shopMallItemWidthAll, 4, 'showFlex');
+    }
+
+    //auto slide shop mall
+    const slideShopMall = document.querySelector('.slider-list');
+    const slideShopMallItem = document.querySelector('.slider-item');
+    const slideShopMallItems = document.querySelectorAll('.slider-item');
+    const slidePaginationShopMall = document.querySelector(".slider-pagination");
+    const slideShopMallItemAll = slideShopMallItems.length;
+    let slideShopMallItemWidth = 0;
+    if(slideShopMallItem){
+      slideShopMallItemWidth = slideItem.offsetWidth;
+    }
+    const slideItemWidthMax = (slideShopMallItemAll-1)*(slideShopMallItemWidth);
+    const ShopMallduration = 6000;
+    let shopMallIndex = 0;
+
 },true);

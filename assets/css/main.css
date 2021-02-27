@@ -3662,6 +3662,7 @@ button.btn-outline-border-primary {
 
 .flash-sale-list {
     display: flex;
+    transition: all 500ms ease 0s;
 }
 
 .product-flash-sale {
@@ -3800,7 +3801,6 @@ button.btn-outline-border-primary {
 .shop-mall-slide-list {
     height: 100%;
     display: flex;
-
 }
 
 .shop-mall-slide-item {
@@ -3822,3 +3822,67 @@ button.btn-outline-border-primary {
 }
 
 /* Slide Shop Mall End */
+
+.shop-mall-branch-container {
+    position: relative;
+}
+
+.shop-mall-branch-container,
+.shop-mall-branch-wrapper,
+.shop-mall-branch-list {
+    width: 100%;
+    height: 100%;
+}
+
+.shop-mall-branch-wrapper {
+    overflow-x: hidden;
+}
+
+.shop-mall-branch-list {
+    display: flex;
+    transition: all 500ms ease 0s;
+}
+
+.shop-mall-branch-item {
+    height: 100%;
+
+    flex: 0 0 25%;
+    max-width: 25%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shop-mall-branch-link {
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+.shop-mall-branch-img {
+    padding-top: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.shop-mall-branch-title {
+    left: 50%;
+    bottom: 10px;
+    position: absolute;
+    transform: translateX(-50%);
+
+    width: 67%;
+    height: 27px;
+
+    font-size: 18px;
+    line-height: 27px;
+    color: var(--primary-mall-color);
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}

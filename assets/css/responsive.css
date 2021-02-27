@@ -520,6 +520,11 @@
     .product-selling-wrapper {
         margin: 0 8.9px;
     }
+
+    .shop-mall-branch-item {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
 }
 
 @media (min-width: 500px) and (max-width: 640px) {
@@ -655,6 +660,15 @@
 
     .product-selling-wrapper {
         margin: 0 5.01px;
+    }
+
+    .block-body {
+        padding: 0px;
+    }
+
+    .shop-mall-branch-item {
+        flex: 0 0 41.66667%;
+        max-width: 41.66667%;
     }
 
 }

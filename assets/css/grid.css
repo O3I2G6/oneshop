@@ -30,6 +30,10 @@
     padding-left: 0;
     padding-right: 0;
 }
+
+.col.auto {
+    flex: 1;
+}
   
 .c-0 {
     display: none;
