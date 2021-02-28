@@ -776,17 +776,45 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     //auto slide shop mall
-    const slideShopMall = document.querySelector('.slider-list');
-    const slideShopMallItem = document.querySelector('.slider-item');
-    const slideShopMallItems = document.querySelectorAll('.slider-item');
-    const slidePaginationShopMall = document.querySelector(".slider-pagination");
+    const slideShopMall = document.querySelector('.shop-mall-slide-list');
+    const slideShopMallItem = document.querySelector('.shop-mall-slide-item');
+    const slideShopMallItems = document.querySelectorAll('.shop-mall-slide-item');
+    const slidePaginationShopMall = document.querySelector("#slider-shop-mall-pagination");
     const slideShopMallItemAll = slideShopMallItems.length;
     let slideShopMallItemWidth = 0;
     if(slideShopMallItem){
-      slideShopMallItemWidth = slideItem.offsetWidth;
+      slideShopMallItemWidth = slideShopMallItem.offsetWidth;
     }
-    const slideItemWidthMax = (slideShopMallItemAll-1)*(slideShopMallItemWidth);
+    const slideShopMallItemWidthMax = (slideShopMallItemAll)*(slideShopMallItemWidth);
     const ShopMallduration = 6000;
     let shopMallIndex = 0;
+
+    //create pagination shop mall 
+
+    pagination(slideShopMallItemAll, slidePaginationShopMall, "shop-mall-pagination");
+
+    const shopMallPaginations = document.querySelectorAll(".shop-mall-pagination");
+    
+    handleActivePagination(shopMallPaginations);
+
+    let slideShopMallMethod =  (direction) => {
+      if(direction === 'next') { shopMallIndex = nextSlide(++shopMallIndex, slideShopMallItemWidth, slideShopMallItemWidthMax, slideShopMall, shopMallPaginations)};
+
+      //stopped auto slide when user click prev/next button
+
+      clearInterval(timerShopMall);
+
+      //then started again auto slide
+
+      timerShopMall = setInterval(autoSlideShopMall, ShopMallduration);
+    }
+
+    //auto slide
+
+    let autoSlideShopMall = () => slideShopMallMethod("next");
+
+    let timerShopMall = setInterval(autoSlideShopMall, ShopMallduration);
+
+    shopMallIndex = handleClickPagination(shopMallIndex, slideShopMallItemWidth, slideShopMall, shopMallPaginations, timerShopMall);
 
 },true);

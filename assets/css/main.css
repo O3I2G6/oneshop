@@ -3796,6 +3796,7 @@ button.btn-outline-border-primary {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 .shop-mall-slide-list {
@@ -3819,6 +3820,15 @@ button.btn-outline-border-primary {
     background-size: conta;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.shop-mall-pagination {
+    cursor: pointer;
+}
+
+.shop-mall-pagination.active {
+    border-color: #ee4d2d !important;
+    background-color: #ee4d2d !important;
 }
 
 /* Slide Shop Mall End */
