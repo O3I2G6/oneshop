@@ -602,8 +602,10 @@ document.addEventListener('DOMContentLoaded', function(){
     if(slideItem){
       slideItemWidth = slideItem.offsetWidth;
     }
-    const slideItemWidthMax = (slideItemAll-1)*(slideItemWidth + 10);
-    const duration = 6000;
+
+    console.log(slideItemWidth);
+    const slideItemWidthMax = (slideItemAll)*(slideItemWidth);
+    const duration = 3000;
     let index = 0;
 
     //Create pagination slide
@@ -777,8 +779,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //auto slide shop mall
     const slideShopMall = document.querySelector('.shop-mall-slide-list');
-    const slideShopMallItem = document.querySelector('.shop-mall-slide-item');
-    const slideShopMallItems = document.querySelectorAll('.shop-mall-slide-item');
+    const slideShopMallItem = document.querySelector('[data-slide="shop-mall-slide-item"]');
+    const slideShopMallItems = document.querySelectorAll('[data-slide="shop-mall-slide-item"]');
     const slidePaginationShopMall = document.querySelector("#slider-shop-mall-pagination");
     const slideShopMallItemAll = slideShopMallItems.length;
     let slideShopMallItemWidth = 0;

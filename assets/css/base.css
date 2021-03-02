@@ -306,3 +306,7 @@ a {
 .block-body {
     padding: 20px;
 }
+
+.margin-top {
+    margin-top: 100px;
+}
